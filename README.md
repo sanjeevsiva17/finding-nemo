@@ -1,7 +1,11 @@
 # Finding Nemo
-####Basic Search engine using elasticsearch and flask
+## Basic Search engine using Elasticsearch and flask
 
-To run the code:
+### Before cloning
+
+Install elasticsearch locally
+
+### To run the code:
 
 `virtualenv -p python3 envname`
 
