@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from searchengine.search_engine import query_elasticsearch
+import json
 
 app = Flask(__name__)
 
@@ -16,6 +17,8 @@ def search():
         search_query = request.form["search"]
         res = query_elasticsearch(search_query)
         for i in res:
+            i['_source']['education'] = json.loads(i['_source']['education'])
+            i['_source']['skills'] = json.loads(i['_source']['skills'])
             resp_obj.append(i['_source'])
     return render_template('/index.html', resp_obj=resp_obj, search_query= search_query)
 

@@ -43,20 +43,46 @@
         {% if search_query %}
         <h4>Results for {{search_query}}</h4>
         {%endif%}
+
         {% for i in resp_obj %}
             <br>
-            <a href=={{i.url}}>{{i.name}}</a>
+              <a href={{i.url}}>{{i.name}}</a>
             <br>
-            {{i.location}}
-            <br>
-            <br>
-            {{i.intro}}
+                {{i.location}}
             <br>
             <br>
-            {{i.job}}
+                {{i.intro}}
             <br>
             <br>
-            {{i.about}}
+                {{i.job}}
+            <br>
+            <br>
+                {%if i.about is not none%}
+                    {{i.about}}
+                {%endif%}
+            <br>
+            <br>
+
+                {% for j in i.education %}
+                    School : {{j.schoolName}}
+                    <br>
+                    Degree : {{j.degreeName}}
+                    <br>
+                    Field of Study : {{j.fieldOfStudy}}
+                    <br>
+                    <br>
+                {%endfor%}
+            <br>
+            <br>
+            <br>
+            <br>
+            {% for j in i.skills %}
+                Skill : {{j.skillName}}
+                <br>
+                Enodoresment count : {{j.endorsementCount}}
+                <br>
+                <br>
+            {%endfor%}
             <br>
             <br>
         {% endfor %}
