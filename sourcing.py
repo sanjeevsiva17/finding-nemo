@@ -1,11 +1,14 @@
 import pandas as pd
 from elasticsearch import Elasticsearch
 
-FILENAME = 'Resources/people.csv'
+FILE = 'Resources/people.csv'
 es = Elasticsearch(HOST="http://localhost", PORT=9200)
 
-df = pd.read_csv(FILENAME)
+df = pd.read_csv(FILE)
 df = df.replace({pd.np.nan: None})
+df.drop_duplicates(subset=None, inplace=True)
+df.to_csv(FILE)
+
 
 people = {}
 
@@ -21,4 +24,4 @@ for name, intro, location, job, about, education, skills, url in zip(df['Name'],
     people["skills"] = skills
     people["url"] = url
 
-    print(es.index(index="profile", doc_type="profile", body=people))
+    print(es.index(index="people", doc_type="person", body=people))
