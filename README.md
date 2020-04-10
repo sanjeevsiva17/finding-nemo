@@ -13,3 +13,5 @@ Install elasticsearch locally
 
 `pip install requirements.txt`
 
+Step 1 : run `source.py` to index data into elasticsearch
+Step 2 : run `app.py` to run the server and start searching
